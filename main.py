@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 from database import SessionLocal, engine
 import models
@@ -14,11 +15,22 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+# CORS configuration - allows both development and production
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    os.getenv("FRONTEND_URL", ""),  # For production (set in Render)
+]
+
+# Filter out empty strings
+ALLOWED_ORIGINS = [origin for origin in ALLOWED_ORIGINS if origin]
 
 # Add CORS middleware to allow React frontend to connect
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # React's default port
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all headers

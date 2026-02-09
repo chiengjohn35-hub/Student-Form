@@ -1,2 +1,28 @@
+# Virtual environment
+work/
+
+# Database files
+*.db
 /work.db
 /work2.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files (optional)
+.env
+.env.local
