@@ -35,8 +35,6 @@ app.add_middleware(
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all headers
 )
-# Add your deployed frontend URL to ALLOWED_ORIGINS
-"https://your-frontend-url.onrender.com",
 
 # Dependency: get a database session for each request
 def get_db():
