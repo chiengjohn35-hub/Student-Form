@@ -21,6 +21,7 @@ ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://student-form-1-7ivh.onrender.com",  # Frontend production URL
     os.getenv("FRONTEND_URL", ""),  # For production (set in Render)
 ]
 
